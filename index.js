@@ -4,7 +4,7 @@ const instance = axios.create({
 });
 
 // Get data from openweather API
-instance.get('/weather', {
+Promise.all([instance.get('/weather', {
     params: {
         q: "Paris",
         units: 'metric',
@@ -12,5 +12,18 @@ instance.get('/weather', {
     }
 }).then(res => {
     const {main, wind} = res.data;
-    console.log({main, wind});
-});
+    return ({main, wind});
+}),
+instance.get('./forecast',{
+    params: {
+        q: "Paris",
+        units: "metric",
+        APPID: ""
+    }
+})
+.then(res => {
+    const {city} = res.data;
+    return ({city});
+})]).then(res => {
+    console.log(res);
+})
