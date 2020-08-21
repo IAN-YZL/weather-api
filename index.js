@@ -1,6 +1,6 @@
 const axios = require('axios');
 const instance = axios.create({
-    baseURL: 'api.openweathermap.org/data/2.5',
+    baseURL: 'http://api.openweathermap.org/data/2.5',
 });
 
 instance.get('/weather', {
