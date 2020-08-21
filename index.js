@@ -3,12 +3,14 @@ const instance = axios.create({
     baseURL: 'http://api.openweathermap.org/data/2.5',
 });
 
+// Get data from openweather API
 instance.get('/weather', {
     params: {
         q: "Paris",
         units: 'metric',
-        APPID: "a188b2650dceb0044e221c9ed68ae9b2"
+        APPID: ""
     }
 }).then(res => {
-    console.log(res);
+    const {main, wind} = res.data;
+    console.log({main, wind});
 });
